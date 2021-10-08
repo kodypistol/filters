@@ -90,7 +90,7 @@
       }
     }
 
-    for (var y = height/2; y < height; y++) {
+    for (var y = 0; y < height; y++) {
       for (var x = 0; x < width; x++) {
         tr[x][y] = 0;
         tg[x][y] = 0;
@@ -348,6 +348,8 @@ function myNiveauxDeGris1Color(){
   }
 
 
+// Nous stockons les valeurs r, g et b de la couleur que nous voulons détecter dans l'image.
+// Ensuite, on lui applique une certainte tolérance t, pour pas que la détection soit "binaire"
   rr = 57;
   rg = 123;
   rb = 111;
@@ -355,6 +357,7 @@ function myNiveauxDeGris1Color(){
 
   for (var y = 0; y < height; y++) {
     for (var x = 0; x < width; x++) {
+      
       //si je trouve un pixel beige alors je le peints en rouge sinon je calcule sa nuance de gris
       if( ((rr - t) < tr[x][y] && tr[x][y] < (rr + t)) &&
           ((rg - t) < tg[x][y] && tg[x][y] < (rg + t)) &&
@@ -558,7 +561,7 @@ function myPassageBleu(){
 
       var opacityValue = (ta[x][y] / 255);
       tr[x][y] = 0;
-      tb[x][y] = tb[x][y] + (tb[x][y] - tb[x][y]) * opacityValue;
+      tb[x][y] = tb[x][y] * opacityValue;
       tg[x][y] = 0;
 
     }
