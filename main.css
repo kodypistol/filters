@@ -6,3 +6,23 @@
 .camera {
   text-align: center;
 }
+
+.explications {
+  text-align: center;
+  margin: 0 10% 5%;
+}
+
+h3 {
+  margin: 10px;
+}
+
+.top-heading {
+  height: 30%;
+  background-color: yellow;
+  position: fixed;
+}
+
+.button-filter {
+  margin-top: 50px;
+  margin-left: 15%;
+}

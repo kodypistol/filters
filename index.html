@@ -6,32 +6,106 @@
   <title>Hello, world!</title>
   <script src="capture.js"></script>
   <script src="filter.js"></script>
-  <link rel="stylesheet" href="main.css" type="text/css" media="all">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="main.css" type="text/css" media="all">
 </head>
 
 <body style="background-color:yellow;">
+  <div class="top-heading">
+
+
   <p>snapshot from webcam by WebRTC <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos">source</a></p>
-<div class="camera">
-  <video id="video">Video stream not available.</video>
-  <canvas id="mycanvas"></canvas>
-  <img id="photo" alt="The screen capture will appear in this box.">
+  <div class="camera">
+    <video id="video">Video stream not available.</video><br>
+    <canvas id="mycanvas"></canvas>
+    <img id="photo" alt="The screen capture will appear in this box."><br>
+    <button id="startbutton" class="btn btn-dark">Take photo</button>
+  </div>
 </div>
 
   <div class="button-filter">
-  <button id="startbutton" class="btn btn-dark">Take photo</button><br>
-  <button id="idbasebutton" class="btn btn-dark">Base</button>
-  <button id="idbinarisationbutton" class="btn btn-dark">Binarisation</button>
+
+      <div class="explications">
+      <button id="idbasebutton" class="btn btn-dark">Base</button>
+      <h3>Bouton "Base" :</h3>
+      <p>C’est le premier exercice que nous avions produit. Il applique à tous les pixels de la moitié inférieure de l’image de la couleur bleue, puis, en assignant à « k » la valeur de ta[x][y] comprise entre 0 et 1, on applique un certain « taux
+        d’opacité » à cette couleur bleue, dans un tableau en 1 dimension.</p>
+      <p>Complexité verte=5</p>
+    </div>
+
+    <div class="explications">
+      <button id="idbinarisationbutton" class="btn btn-dark">Binarisation</button>
+      <h3>Bouton "Binarisation" :</h3>
+      <p>Tout d’abord il fallait faire la moyenne de chaque valeur de couleur dans les tableaux (rouge, vert et bleu). Ensuite, en appliquant cette valeur à chaque pixel de notre image, on obtient une image en noir et blanc.
+Par la suite, toute valeur supérieure à 128, nous lui assignons la valeur 255 aux pixels rouge, vert et bleu, et à l’inverse, la valeur 0.</p>
+      <p>Complexité verte=5</p>
+    </div>
+
+<div class="explications">
   <button id="idflougaussienbutton" class="btn btn-dark">Flou Gaussien</button>
+  <h3>Bouton "Flou Gaussien" :</h3>
+    <p>Pour appliquer ce filtre, j’applique la condition suivante à deux boucles for :
+Tant que la valeur y est inférieure à la hauteur de l’image -1, nous appliquons les prochaines modifications (de même pour la valeur x). Ensuite, nous faisons la moyenne de la valeur des 9 pixels autour de chacun des pixels qui composent notre image, et nous lui assignons cette nouvelle valeur. Cette opération nous donne alors ce flou gaussien.</p>
+    <p>Complexité verte=5</p>
+</div>
+
+<div class="explications">
   <button id="idinvertcolorsbutton" class="btn btn-dark">Inverser les couleurs</button>
-  <button id="idluminositybutton" class="btn btn-dark">Luminosité</button>
-  <button id="idniveauxdegrisbutton" class="btn btn-dark">Niveaux de gris</button>
-  <button id="idniveauxdegris1colorbutton" class="btn btn-dark">Niveaux de gris avec 1 couleur</button>
+  <h3>Bouton "Inverser les couleurs" :</h3>
+    <p>Pour appliquer ce filtre, je soustrais simplement 255 à chacune des valeurs rouge, verte et bleu de chaque pixel qui compose l’image. Cela a alors pour effet d’inverser complètement chaque couleur.</p>
+    <p>Complexité verte=5</p>
+</div>
+
+    <div class="explications">
+      <button id="idluminositybutton" class="btn btn-dark">Luminosité</button>
+      <h3>Bouton "Luminosité" :</h3>
+        <p>Pour appliquer ce filtre, on ajoute simplement 20 à chaque valeur de couleur rouge, verte et bleue qui compose notre image.</p>
+        <p>Complexité verte=5</p>
+    </div>
+
+    <div class="explications">
+      <button id="idniveauxdegrisbutton" class="btn btn-dark">Niveaux de gris</button>
+      <h3>Bouton "Niveaux de gris" :</h3>
+        <p>Pour appliquer ce filtre, faire la moyenne de chaque valeur de couleur dans les tableaux (rouge, vert et bleu). Ensuite, en appliquant cette valeur à chaque pixel de notre image, on obtient une image en noir et blanc.</p>
+        <p>Complexité verte=5</p>
+    </div>
+
+    <div class="explications">
+      <button id="idniveauxdegris1colorbutton" class="btn btn-dark">Niveaux de gris avec 1 couleur</button>
+  <h3>Bouton "Niveaux de gris avec 1 couleur" :</h3>
+      <p>Pour appliquer ce filtre, nous passons tout d’abord notre image en noir et blanc. De plus, nous assignons dans le code la couleur que nous voulons viser (rr, gg, bb,) et la tolérance (t). Par la suite, pour toutes les valeurs se trouvant entre t - rr/gg/bb et t + rr/gg/bb, nous lui assignons la couleur de notre choix.</p>
+      <p>Complexité bleu=10</p>
+    </div>
+
+<div class="explications">
   <button id="idnoisebutton" class="btn btn-dark">Noise</button>
+  <h3>Bouton "Noise" (bruit poivre et sel) :</h3>
+  <p>Pour appliquer ce filtre, nous demandons à Javascript de nous générer un nombre aléatoire entre 0 et 0.999… que nous multiplions par la valeur de quantité bruit que nous assignons au préalable. Ensuite, nous ajoutons cette valeur à chaque valeur de rouge, vert et bleu des pixels de l’image.</p>
+  <p>Complexité bleu=10</p>
+</div>
+
+<div class="explications">
   <button id="idpassagebleubutton" class="btn btn-dark">Passage au bleu</button>
+  <h3>Bouton "Passage au bleu"</h3>
+  <p>Pour appliquer ce filtre, nous utilisons la technique pour définir une valeur d’opacité utilisée dans le filtre « Base ». Puis, à tous les pixels rouges et verts de l’image, nous les définissons à 0. Ensuite, pour les pixels bleus, nous lui assignons son ancienne valeur multipliée par la valeur d’opacité.</p>
+  <p>Complexité verte=5</p>
+</div>
+
+<div class="explications">
   <button id="idpassagerougebutton" class="btn btn-dark">Passage au rouge</button>
-  <button id="idpassagevertbutton" class="btn btn-dark">Passage au vert</button>
+  <h3>Bouton "Passage au rouge"</h3>
+  <p>Pour appliquer ce filtre, nous utilisons la technique pour définir une valeur d’opacité utilisée dans le filtre « Base ». Puis, à tous les pixels bleus et verts de l’image, nous les définissons à 0. Ensuite, pour les pixels rouges, nous lui assignons son ancienne valeur multipliée par la valeur d’opacité.</p>
+  <p>Complexité verte=5</p>
+</div>
+
+    <div class="explications">
+      <button id="idpassagevertbutton" class="btn btn-dark">Passage au vert</button>
+      <h3>Bouton "Passage au vert"</h3>
+      <p>Pour appliquer ce filtre, nous utilisons la technique pour définir une valeur d’opacité utilisée dans le filtre « Base ». Puis, à tous les pixels rouges et bleus de l’image, nous les définissons à 0. Ensuite, pour les pixels verts, nous lui assignons son ancienne valeur multipliée par la valeur d’opacité.</p>
+      <p>Complexité verte=5</p>
+    </div>
+
   </div>
 </body>
 
